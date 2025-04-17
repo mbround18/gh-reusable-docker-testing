@@ -1,0 +1,25 @@
+name: Docker Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+#   docker-release:
+#     uses: mbround18/gh-reusable/.github/workflows/docker-release.yaml@main
+#     with:
+#       image: "mbround18/enshrouded-docker"
+#     secrets: inherit
+
+  tagger:
+    # needs: docker-release
+    if: ${{ github.ref == 'refs/heads/main' }}
+    uses: mbround18/gh-reusable/.github/workflows/tagger.yaml@main
+    secrets: inherit
